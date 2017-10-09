@@ -39,7 +39,7 @@ create_downloads_dir() {
 }
 
 backup_binary() {
-	dir=$($BACKUP_DIR/$DATE)
+	dir=$(mkdir $BACKUP_DIR/$DATE)
 	cp $TOMCAT_WEBAPPS/$ARTI_NAME $dir
 	if [ $? -eq 0 ]
 	then

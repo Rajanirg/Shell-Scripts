@@ -3,14 +3,13 @@
 
 
 # check sites
-fucntion check_sites {
+function check_sites {
 	for i in $(cat sites.txt)
 	do
-		ping -c2 $i > /dev/null
-		if [ $? -ne 0 ]
+		ping -c2 $i
+		if [ ! $? -eq 0 ]
 		then
 			ehco "$i -- DOWN" | mail -s "SITE DOWN!!!" "amgill1234@gmail.com"
-
 		else
 			echo "$i -- UP"
 		fi
@@ -22,7 +21,7 @@ fucntion check_sites {
 function check_services {
 	for i in $(cat services.txt)
 	do
-		service $i status > /dev/null
+		service $i status
 		if [ $? -ne 0 ]
 		then
 			echo "$i -- DOWN" | mail -s "SERVICE DOWN!!!" "amgill1234@gmail.com"
@@ -34,6 +33,9 @@ function check_services {
 		fi
 	done
 }
+
+check_sites
+
 
 
 
