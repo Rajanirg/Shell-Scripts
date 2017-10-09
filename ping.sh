@@ -9,7 +9,7 @@ function check_sites {
 		ping -c2 $i
 		if [ ! $? -eq 0 ]
 		then
-			ehco "$i -- DOWN" | mail -s "SITE DOWN!!!" "amgill1234@gmail.com"
+			echo "$i -- DOWN" | mail -s "SITE DOWN!!!" "amgill1234@gmail.com"
 		else
 			echo "$i -- UP"
 		fi
