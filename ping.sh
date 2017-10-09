@@ -22,7 +22,7 @@ fucntion check_sites {
 function check_services {
 	for i in $(cat services.txt)
 	do
-		service $i status > /dev/null 2<&1
+		service $i status > /dev/null
 		if [ $? -ne 0 ]
 		then
 			echo "$i -- DOWN" | mail -s "SERVICE DOWN!!!" "amgill1234@gmail.com"
