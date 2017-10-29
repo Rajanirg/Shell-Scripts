@@ -1,13 +1,11 @@
-#!/bin/bash
-
-# export PATH=/sbin:/usr/sbin:/usr/bin:/usr/local/bin
 CHEF="$HOME/chef-repo"
 ENV='all_envs.txt'
 COOKBOOKS='required_cookbooks.txt'
 ROLES='roles/*.rb'
 
 cd $CHEF
-
+pwd
+export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
 ## upload all cookbooks
 echo "=============== Uploading required cookbooks ==============="
 for i in $(cat $COOKBOOKS); do
