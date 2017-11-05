@@ -1,4 +1,5 @@
 #!/bin/bash
+# export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
 
 CHEF_REPO="$HOME/chef-repo"
 COOKBOOKS="$CHEF_REPO/cookbooks"
@@ -19,7 +20,14 @@ cookbook_exists(){
 }
 
 update_metadata(){
-	sed -iv "s/$FIND/$REPLACE/g" $METADATA
+	cat $METADATA | grep $3
+	if [ $? -eq 0 ]
+	then
+		echo "Version is up to date: $3"
+	else
+		sed -iv "s/$FIND/$REPLACE/g" $METADATA
+		echo "COOKBOOK: $COOKBOOK : Version Updated: $3"
+	fi
 }
 
 upload_cookbook(){
