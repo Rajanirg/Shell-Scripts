@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### attempt_1 
+### attempt_1 -- Installs Chef Server for Rhel 
 
 #### NOT DONE YET
 ## TO DO:
