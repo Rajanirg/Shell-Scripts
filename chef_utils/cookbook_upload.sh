@@ -12,7 +12,7 @@ METADATA=$COOKBOOKS/$WHICH_COOKBOOK/metadata.rb
 
 
 cookbook_exists(){
-	if [ ! -e $METADATA ]
+	if [ ! -d $COOKBOOKS/$WHICH_COOKBOOK ]
 	then
 		echo "$WHICH_COOKBOOK DOES NOT EXISTS!!!"
 		exit 1
@@ -34,7 +34,16 @@ upload_cookbook(){
 	knife cookbook upload $WHICH_COOKBOOK
 }
 
+git_push(){
+	git add .
+	git commit -m "Updated with version $3"
+	git push origin $(git rev-parse --abbrev-ref HEAD)
+}
+
 cookbook_exists
 cd $COOKBOOKS
 update_metadata
 upload_cookbook
+cd $COOKBOOKS/$WHICH_COOKBOOK
+git_push
+rm -f $COOKBOOKS/$WHICH_COOKBOOK/metadata.rbv
