@@ -6,7 +6,7 @@
 ## TO DO:
 ## make the 2nd function idempotent
 
-CHEF_RPM="https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-server-11.0.8-1.el6.x86_64.rpm"
+CHEF_RPM="https://packages.chef.io/stable/el/5/chef-server-core-12.8.0-1.el5.x86_64.rpm"
 PACKS=("git" "tree" "wget" "vim" "unzip" "ruby" "curl")
 DL_DIR="/home/chef"
 
@@ -42,6 +42,7 @@ install_chef_rpm(){
 		chef-server-ctl status
 	fi
 }
+
 
 install_chef_manage(){
 	chef-server-ctl install chef-manage
