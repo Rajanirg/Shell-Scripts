@@ -37,7 +37,18 @@ install_chef_rpm(){
 			echo "chef-server-11.0.8-1.el6.x86_64.rpm does not exist"
 			wget $CHEF_RPM
 		fi
-		rpm -ivh *.rpm
+		rpm -Uvh *.rpm
 		chef-server-ctl reconfigure
+		chef-server-ctl status
 	fi
 }
+
+install_chef_manage(){
+	chef-server-ctl install chef-manage
+	chef-server-ctl reconfigure
+	chef-manage-ctl reconfigure
+}
+
+install_packs
+install_chef_rpm
+install_chef_manage
