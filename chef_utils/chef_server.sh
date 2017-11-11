@@ -52,4 +52,7 @@ install_chef_manage(){
 
 install_packs
 install_chef_rpm
-install_chef_manage
+if [ $? -eq 0 ]
+then
+	install_chef_manage
+fi
