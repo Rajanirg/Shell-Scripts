@@ -41,3 +41,6 @@ install_chef_rpm(){
 		chef-server-ctl reconfigure
 	fi
 }
+
+install_packs
+install_chef_rpm
