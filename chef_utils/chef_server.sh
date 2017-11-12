@@ -50,6 +50,14 @@ install_chef_manage(){
 	chef-manage-ctl reconfigure
 }
 
+
+### Ensure it is ran by root user!
+if [ $EUID -ne 0 ]
+then
+	echo "Please run this script as a root user!"
+	exit
+fi
+
 install_packs
 install_chef_rpm
 if [ $? -eq 0 ]
