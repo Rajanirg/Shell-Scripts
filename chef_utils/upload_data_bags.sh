@@ -2,19 +2,14 @@
 
 CHEF="$HOME/chef-repo"
 DATA_BAGS="$CHEF/data_bags"
-WHICH_BAG=$1
 
-check_db_exists(){
-	if [ ! -d $DATA_BAGS/$WHICH_BAG ]
-	then
-		echo "$WHICH_BAG Does not exists inside $DATA_BAGS"
-		exit 1
-	fi
-}
 
+## only works when data bags are created by knife
+## will not work on data bags generated during run time.
 upload_db(){
-	cd $DATA_BAGS/$WHICH_BAG
-	knife data bag from file $WHICH_BAG $(ls)
+	for i in $(ls $DATA_BAGS); do
+		knife data bag from file $i $(ls $DATA_BAGS/$i)
+	done
 }
 
 list_on_chef_server(){
@@ -23,10 +18,6 @@ list_on_chef_server(){
 	knife data bag list
 }
 
-cd $DATA_BAGS
-check_db_exists
-if [ $? -eq 0 ]
-then
-	upload_db
-fi 
+
+upload_db
 list_on_chef_server
