@@ -28,6 +28,14 @@ generate_cookbook(){
 	fi
 }
 
+generate_recipe(){
+	if [ -d $COOKBOOKS/$NEW_COOKBOOK ] && [ ! -e "$COOKBOOKS/$NEW_COOKBOOK/recipes/$NEW_COOKBOOK" ]
+	then
+		cd $COOKBOOKS/$NEW_COOKBOOK
+		chef generate recipe $NEW_COOKBOOK
+	fi
+}
+
 generate_attribute(){
 	if [ -d $COOKBOOKS/$NEW_COOKBOOK ]
 	then
@@ -52,6 +60,8 @@ if [ $# -eq 1 ]
 then
 	echo "--------------- GENERATE $NEW_COOKBOOK COOKBOOK ---------------"
 	generate_cookbook
+	echo "--------------- GENERATE $NEW_COOKBOOK RECIPE ---------------"
+	generate_recipe
 	echo "--------------- GENERATE $NEW_COOKBOOK DEFAULT ATTRIBUTE ---------------"
 	generate_attribute
 	echo "--------------- GENERATE $NEW_COOKBOOK DEFAULT TEMPLATE ---------------"
